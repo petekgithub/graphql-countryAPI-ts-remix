@@ -32,20 +32,3 @@ Provide instructions on how to run and set up your project locally. Include any 
 
 Usage
 Explain how to use my application, including any features or functionality. Provide examples if applicable.
-
-Dependencies
-List the main dependencies and versions used in my project. You can generate a package.json file with npm list or yarn list to get this information.
-
-License
-Specify the license under which my project is released.
-
-Contributing
-Explain how others can contribute to my project, including information on how to report issues or submit pull requests.
-
-Authors
-List the authors or contributors to my project.
-
-Acknowledgments
-Include any acknowledgments or credits for third-party libraries, tools, or resources used in my project.
-
-Feel free to customize the sections and content based on the specifics of my project. Providing clear documentation in my README.md helps other developers understand your project and get started with it.
