@@ -11,9 +11,9 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "~/*": ["./app/*"]
+      "*": ["node_modules/*"]
     },
 
     // Remix takes care of building everything in `remix build`.
