@@ -1,12 +1,23 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import { gql, useQuery } from "@apollo/client";
 
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+const COUNTRIES_QUERY = gql`
+  query GetCountry {
+    country(code: "BR") {
+      name
+      native
+      capital
+      emoji
+      currency
+      languages {
+        code
+        name
+      }
+    }
+  }
+`;
 
 export default function Index() {
-  return <h1>Datagues Frontend Assignment here, Welcome!</h1>;
+  const { data } = useQuery(COUNTRIES_QUERY);
+
+  return <div>{JSON.stringify(data)}</div>;
 }
