@@ -1,59 +1,51 @@
-# Welcome to Remix!
+## Create a SPA using with CountryAPI - Remix - Typescript
 
-- [Remix Docs](https://remix.run/docs)
+- Files
 
-## Development
+## index.tsx
 
-From your terminal:
+This file is the entry point of my application. It uses Apollo Client's **useQuery** hook to fetch data from a GraphQL server. The GraphQL query, defined using the gql template literal, fetches information about a specific country with the code "BR." The data is then displayed on the screen.
 
-```sh
-npm run dev
-```
+**_COUNTRIES_QUERY:_** The GraphQL query for fetching country data.
 
-This starts your app in development mode, rebuilding assets on file changes.
+Index(): The main React component that fetches and displays the country data. It handles loading and error states using the useQuery hook.
 
-## Deployment
+## client.tsx
 
-First, build your app for production:
+This file contains the **client-side** code for my application. It sets up Apollo Client, fetches data from a GraphQL server, and displays a list of countries. It also includes filtering and grouping functionality based on user input.
 
-```sh
-npm run build
-```
+COUNTRIES_QUERY: The GraphQL query for fetching a list of countries.
 
-Then run the app in production mode:
+applyFilterAndGroup(): A function for filtering and grouping country data based on user input.
 
-```sh
-npm start
-```
+Client(): The main React component that fetches and displays the list of countries. It handles loading, error states, filtering, and grouping.
 
-Now you'll need to pick a host to deploy it to.
+client: An instance of Apollo Client configured to connect to the GraphQL server.
 
-### DIY
+## server.tsx
 
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+This file is responsible for server-side rendering (SSR) using Remix. It renders the initial HTML markup for the application when a request is made to the server.
 
-<!-- Make sure to deploy the output of `remix build`
+handleRequest(): The server request handler function that renders the initial HTML markup using Remix Server.
+Getting Started
+Provide instructions on how to run and set up your project locally. Include any prerequisites, installation steps, and configuration if necessary.
 
-- `build/` -->
+Usage
+Explain how to use my application, including any features or functionality. Provide examples if applicable.
 
-- `public/build/`
+Dependencies
+List the main dependencies and versions used in my project. You can generate a package.json file with npm list or yarn list to get this information.
 
-### Using a Template
+License
+Specify the license under which my project is released.
 
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over relevant code/assets from your current app to the new project that's pre-configured for your target server.
+Contributing
+Explain how others can contribute to my project, including information on how to report issues or submit pull requests.
 
-Most importantly, this means everything in the `app/` directory, but if you've further customized your current application outside of there it may also include:
+Authors
+List the authors or contributors to my project.
 
-- Any assets you've added/updated in `public/`
-- Any updated versions of root files such as `.eslintrc.js`, etc.
+Acknowledgments
+Include any acknowledgments or credits for third-party libraries, tools, or resources used in my project.
 
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+Feel free to customize the sections and content based on the specifics of my project. Providing clear documentation in my README.md helps other developers understand your project and get started with it.

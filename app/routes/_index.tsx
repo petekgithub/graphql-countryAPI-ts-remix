@@ -17,7 +17,18 @@ const COUNTRIES_QUERY = gql`
 `;
 
 export default function Index() {
-  const { data } = useQuery(COUNTRIES_QUERY);
+  const { data, loading, error } = useQuery(COUNTRIES_QUERY);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    console.error("Apollo Client Error:", error);
+    return <div>Error: {error.message}</div>;
+  }
+
+  console.log(data);
 
   return <div>{JSON.stringify(data)}</div>;
 }
