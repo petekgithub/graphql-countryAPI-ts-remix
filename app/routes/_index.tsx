@@ -1,24 +1,34 @@
 import { gql, useQuery } from "@apollo/client";
+import fs from "fs";
 import { useState } from "react";
 import styles from "../styles/App.css";
-import Country from "../models/Country";
+import type Country from "../models/Country";
+//import GET_COUNTRIES_QUERY from "../queries/countries.graphql";
+import GetCountries from "../queries/countries.graphql";
 
 //NOTE: Perhaps it would be beneficial to extract queries into a separate folder or file
-const COUNTRIES_QUERY = gql`
-  query GetCountries {
-    countries {
-      name
-      native
-      capital
-      emoji
-      currency
-      languages {
-        code
-        name
-      }
-    }
-  }
-`;
+// const COUNTRIES_QUERY = gql`
+//   query GetCountries {
+//     countries {
+//       name
+//       native
+//       capital
+//       emoji
+//       currency
+//       languages {
+//         code
+//         name
+//       }
+//     }
+//   }
+// `;
+
+// const GET_COUNTRIES_QUERY_STRING = fs.readFileSync(
+//   "app/queries/countries.graphql",
+//   "utf-8"
+// );
+
+// const GET_COUNTRIES_QUERY = gql(GET_COUNTRIES_QUERY_STRING);
 
 export const links = () => [{ rel: "stylesheet", href: styles }];
 
@@ -60,7 +70,7 @@ function applyFilterAndGroup(
 
 export default function Index() {
   const [filterInput, setFilterInput] = useState("");
-  const { data, loading, error } = useQuery(COUNTRIES_QUERY);
+  const { data, loading, error } = useQuery(GetCountries);
 
   if (loading) {
     return <div>Loading...</div>;
