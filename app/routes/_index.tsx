@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
-import "../styles/App.css";
+import styles from "../styles/App.css";
+//import { Links } from "@remix-run/react";
 
 //NOTE: Extract model into a separate folder + file so it can be reused
 interface Country {
@@ -32,6 +33,8 @@ const COUNTRIES_QUERY = gql`
     }
   }
 `;
+
+export const links = () => [{ rel: "stylesheet", href: styles }];
 
 // NOTE: Extract this into a util file if needed
 // Filtering and Grouping
