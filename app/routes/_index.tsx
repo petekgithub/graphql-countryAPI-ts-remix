@@ -43,6 +43,7 @@ function applyFilterAndGroup(
 export default function Index() {
   const [filterInput, setFilterInput] = useState("");
   const { data, loading, error } = useQuery(GetCountries);
+  const [selectedItem, setSelectedItem] = useState<Country | null>(null);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -57,6 +58,11 @@ export default function Index() {
     data?.countries || [],
     filterInput
   );
+
+  // Handle item selection
+  const handleItemClick = (country: Country) => {
+    setSelectedItem(country);
+  };
 
   return (
     <div className="container">
@@ -80,7 +86,17 @@ export default function Index() {
               <>
                 {Array.isArray(filteredAndGroupedData)
                   ? filteredAndGroupedData.map((country) => (
-                      <div key={country.name}>{country.name}</div>
+                      <div
+                        key={country.name}
+                        className={
+                          selectedItem === country
+                            ? "selected-color-1"
+                            : "unselected-color"
+                        }
+                        onClick={() => handleItemClick(country)}
+                      >
+                        {country.name}
+                      </div>
                     ))
                   : Object.keys(filteredAndGroupedData).map((size) => (
                       <div key={size}>
