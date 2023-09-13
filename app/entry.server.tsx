@@ -9,8 +9,6 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  // const App = <RemixServer context={remixContext} url={request.url} />;
-
   const client = new ApolloClient({
     ssrMode: true,
     cache: new InMemoryCache(),

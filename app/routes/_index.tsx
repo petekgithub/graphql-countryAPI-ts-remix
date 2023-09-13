@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
+import "../styles/App.css";
 
 //NOTE: Extract model into a separate folder + file so it can be reused
 interface Country {
@@ -87,13 +88,16 @@ export default function Index() {
   );
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search and group (e.g., search:tt group:size)"
-        value={filterInput}
-        onChange={(e) => setFilterInput(e.target.value)}
-      />
+    <div className="container">
+      <div className="center">
+        <input
+          type="text"
+          placeholder="Search and group (e.g., search:tt group:size)"
+          value={filterInput}
+          onChange={(e) => setFilterInput(e.target.value)}
+        />
+      </div>
+
       <div>
         {loading ? (
           <div>Loading...</div>
