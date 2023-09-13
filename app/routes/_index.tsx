@@ -2,12 +2,10 @@ import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import styles from "../styles/App.css";
 import type Country from "../models/Country";
-//import GET_COUNTRIES_QUERY from "../queries/countries.graphql";
 import GetCountries from "../queries/countries";
 
 export const links = () => [{ rel: "stylesheet", href: styles }];
 
-// NOTE: Extract this into a util file if needed
 // Filtering and Grouping
 function applyFilterAndGroup(
   data: Country[],
@@ -24,18 +22,17 @@ function applyFilterAndGroup(
 
   // For grouping
   if (groupBy && groupBy === "size") {
-    // NOTE: You could use `reduce` instead of `forEach`
-    const groupedData: Record<string, Country[]> = {};
+    const groupedData: Record<string, Country[]> = filteredData.reduce(
+      (accumulator, country) => {
+        const size = country.size || "Unknown";
 
-    filteredData.forEach((country) => {
-      const size = country.size || "Unknown";
+        accumulator[size] = accumulator[size] || [];
+        accumulator[size].push(country);
 
-      if (!groupedData[size]) {
-        groupedData[size] = [];
-      }
-
-      groupedData[size].push(country);
-    });
+        return accumulator;
+      },
+      {} as Record<string, Country[]>
+    );
 
     return groupedData;
   }
@@ -77,8 +74,6 @@ export default function Index() {
           <div>Loading...</div>
         ) : (
           <>
-            {/* `error` type can only be ApolloError or undefined, casing it to `as Error` is not a good idea */}
-            {/* Check out their error handling guide: https://www.apollographql.com/docs/apollo-server/data/errors/#custom-errors */}
             {error !== null && error !== undefined ? (
               <div>Error: {(error as Error).message}</div>
             ) : (
