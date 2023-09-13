@@ -8,3 +8,9 @@
 .center {
   text-align: center;
 }
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 30px;
+  width: 200%;
+  text-align: center;
+}
