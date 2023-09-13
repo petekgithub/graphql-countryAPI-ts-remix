@@ -1,21 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
 import styles from "../styles/App.css";
-//import { Links } from "@remix-run/react";
-
-//NOTE: Extract model into a separate folder + file so it can be reused
-interface Country {
-  name: string;
-  native: string;
-  capital: string;
-  emoji: string;
-  currency: string;
-  size: string;
-  languages: {
-    code: string;
-    name: string;
-  }[];
-}
+import Country from "../models/Country";
 
 //NOTE: Perhaps it would be beneficial to extract queries into a separate folder or file
 const COUNTRIES_QUERY = gql`
