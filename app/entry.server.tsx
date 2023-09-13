@@ -1,3 +1,4 @@
+import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
 import type { EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
@@ -8,7 +9,19 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  const App = <RemixServer context={remixContext} url={request.url} />;
+  // const App = <RemixServer context={remixContext} url={request.url} />;
+
+  const client = new ApolloClient({
+    ssrMode: true,
+    cache: new InMemoryCache(),
+    uri: "https://countries.trevorblades.com/graphql",
+  });
+
+  const App = (
+    <ApolloProvider client={client}>
+      <RemixServer context={remixContext} url={request.url} />
+    </ApolloProvider>
+  );
 
   const markup = renderToString(App);
 

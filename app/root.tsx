@@ -1,5 +1,6 @@
-//import { cssBundleHref } from "@remix-run/css-bundle";
-//import type { LinksFunction } from "@remix-run/node";
+//It's the starting point for rendering the entire application.
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import {
   Links,
   LiveReload,
@@ -9,9 +10,11 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-// export const links: LinksFunction = () => [
-//   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-// ];
+const client = new ApolloClient({
+  ssrMode: true,
+  cache: new InMemoryCache(),
+  uri: "https://countries.trevorblades.com/graphql",
+});
 
 export default function App() {
   return (
@@ -23,10 +26,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <ApolloProvider client={client}>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </ApolloProvider>
       </body>
     </html>
   );
