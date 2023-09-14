@@ -15,11 +15,11 @@ input[type="text"] {
   text-align: center;
 }
 
-/* Define a set of background colors for selected items */
+/* background colors for selected items */
 .selected-color-1 {
-  background-color: #ff5733; /* Example color 1 for selected item */
+  background-color: #8f74f1;
 }
-/* Define a background color for unselected items */
+/* background color for unselected items */
 .unselected-color {
-  background-color: #f0f0f0; /* Default background color for unselected items */
+  background-color: #f0f0f0;
 }

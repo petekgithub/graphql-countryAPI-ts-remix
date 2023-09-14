@@ -45,6 +45,28 @@ export default function Index() {
   const { data, loading, error } = useQuery(GetCountries);
   const [selectedItem, setSelectedItem] = useState<Country | null>(null);
 
+  //     // Select the 10th item or the last one if there are fewer than 10 items
+  //const [items, setItems] = useState<Country[]>([]);
+
+  // useEffect(() => {
+  //   if (data && data.countries) {
+  //     const filteredData = applyFilterAndGroup(data.countries, filterInput);
+  //     const dataArray = Array.isArray(filteredData)
+  //       ? filteredData
+  //       : Object.values(filteredData).flatMap((countries) => countries);
+
+  //     setItems(dataArray);
+
+  //     if (dataArray.length >= 10) {
+  //       setSelectedItem(dataArray[9]); // Select the 10th item
+  //     } else if (dataArray.length > 0) {
+  //       setSelectedItem(dataArray[dataArray.length - 1]); // Select the last item
+  //     } else {
+  //       setSelectedItem(null); // No items to select
+  //     }
+  //   }
+  // }, [data, filterInput]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
